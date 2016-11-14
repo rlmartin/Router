@@ -55,7 +55,7 @@ public class Router {
         }
         
         // form the host/path url
-        let host = routeComponents.host.flatMap({"/\($0)"}) ?? ""
+        let host = routeComponents.host.flatMap({$0.trimmed == "" ? nil : "/\($0)"}) ?? ""
         let path = routeComponents.path.flatMap({$0}) ?? ""
         let routeToMatch = "\(host)\(path)"
         let queryParams = routeComponents.queryItems
